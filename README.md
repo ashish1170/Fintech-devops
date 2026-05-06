@@ -53,6 +53,7 @@ User → Route 53 → ALB → /api/*  → Backend Pod → RDS
 | SPOT EKS nodes | ~70% cheaper than On-Demand | Rare interruptions; K8s reschedules |
 | RDS Multi-AZ | Eliminates DB single point of failure | ~2× DB cost |
 
+
 ---
 
 ## (b) Terraform Strategy
@@ -122,6 +123,9 @@ module "db" {
 - State drift → enforced via `terraform refresh`; no manual console edits
 - Concurrent runs → blocked by DynamoDB lock table
 - Sensitive state → S3 encryption + `sensitive = true` on password variables
+<img width="368" height="1016" alt="Screenshot 2026-05-06 134101" src="https://github.com/user-attachments/assets/7af44556-6fb2-4063-9330-fee66d7b447e" />
+<img width="1488" height="1199" alt="Screenshot 2026-05-06 074836" src="https://github.com/user-attachments/assets/85665e82-5ea8-4324-90eb-35fd49687104" />
+<img width="1919" height="909" alt="Screenshot 2026-05-06 100342" src="https://github.com/user-attachments/assets/3aa5bb68-573f-40fa-884c-7d86702b2b33" />
 
 ---
 
@@ -215,6 +219,8 @@ metrics:
 - Any manifest change → automatic rolling sync to EKS
 - `selfHeal: true` → reverts manual `kubectl` changes automatically
 - `prune: true` → removes resources deleted from Git
+<img width="1285" height="142" alt="Screenshot 2026-05-06 080435" src="https://github.com/user-attachments/assets/42833c69-2aaf-47c3-8229-80585ddabebb" />
+<img width="1296" height="493" alt="Screenshot 2026-05-06 082943" src="https://github.com/user-attachments/assets/b9d43209-568c-4cf9-941f-376cfcb6142c" />
 
 ---
 
@@ -280,6 +286,11 @@ kubectl rollout undo deployment/backend -n fintech
 git revert HEAD && git push
 # Pipeline rebuilds previous image → Argo CD redeploys
 ```
+<img width="1919" height="1101" alt="Screenshot 2026-05-06 100155" src="https://github.com/user-attachments/assets/d659db85-1439-4793-8b72-b4149849b91f" />
+
+<img width="1918" height="1097" alt="Screenshot 2026-05-06 100207" src="https://github.com/user-attachments/assets/6ed23ab5-63d3-48d8-8c52-b4dff3b0fcca" />
+<img width="1919" height="1151" alt="Screenshot 2026-05-06 082902" src="https://github.com/user-attachments/assets/23d1d24b-8a5d-4c94-b76c-fda0a4f6bbd3" />
+<img width="1915" height="1153" alt="Screenshot 2026-05-06 100358" src="https://github.com/user-attachments/assets/6efcd1ff-8f8c-4fae-9f5b-f67abfa95f00" />
 
 ---
 
