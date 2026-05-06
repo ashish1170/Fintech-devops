@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/YOUR_GITHUB_USERNAME/Fintech-devops.git
+    repoURL: https://github.com/ashish1170/Fintech-devops.git
     targetRevision: main
     path: k8s
   destination:
