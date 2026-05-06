@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fintech App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      color: #17202a;
+    }
+
+    input,
+    button {
+      font-size: 16px;
+      padding: 8px;
+    }
+
+    button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Users</h1>
+
+  <input id="name" placeholder="Enter name" />
+  <button onclick="addUser()">Add</button>
+
+  <ul id="users"></ul>
+
+  <script>
+    const API = "/api";
+
+    async function loadUsers() {
+      const res = await fetch(`${API}/users`);
+      const users = await res.json();
+      const list = document.getElementById("users");
+      list.innerHTML = "";
+      users.forEach((user) => {
+        const li = document.createElement("li");
+        li.textContent = user.name;
+        list.appendChild(li);
+      });
+    }
+
+    async function addUser() {
+      const input = document.getElementById("name");
+      const name = input.value;
+
+      if (!name.trim()) {
+        return;
+      }
+
+      await fetch(`${API}/users`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name })
+      });
+
+      input.value = "";
+      loadUsers();
+    }
+
+    loadUsers();
+  </script>
+</body>
+</html>
