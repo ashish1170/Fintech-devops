@@ -22,7 +22,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: backend
-          image: 363479757945.dkr.ecr.us-east-1.amazonaws.com/fintech-backend:74c49ef
+          image: 363479757945.dkr.ecr.us-east-1.amazonaws.com/fintech-backend:b7ee874
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000

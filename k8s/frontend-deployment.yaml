@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: 363479757945.dkr.ecr.us-east-1.amazonaws.com/fintech-frontend:74c49ef
+          image: 363479757945.dkr.ecr.us-east-1.amazonaws.com/fintech-frontend:b7ee874
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
