@@ -8,48 +8,39 @@ terraform {
 
 variable "project" {
   type        = string
-  description = "Project name used for resource names."
 }
 
 variable "environment" {
   type        = string
-  description = "Environment name such as dev or prod."
 }
 
 variable "vpc_cidr" {
   type        = string
-  description = "CIDR range for the VPC."
 }
 
 variable "azs" {
   type        = list(string)
-  description = "Availability zones used by the VPC."
 }
 
 variable "public_subnet_cidrs" {
   type        = list(string)
-  description = "CIDR ranges for public subnets."
 }
 
 variable "private_subnet_cidrs" {
   type        = list(string)
-  description = "CIDR ranges for EKS private subnets."
 }
 
 variable "database_subnet_cidrs" {
   type        = list(string)
-  description = "CIDR ranges for RDS database subnets."
 }
 
 variable "enable_nat_gateway" {
   type        = bool
-  description = "Whether private subnets should route outbound traffic through a NAT Gateway."
   default     = true
 }
 
 variable "common_tags" {
   type        = map(string)
-  description = "Common tags applied to all resources."
   default     = {}
 }
 
